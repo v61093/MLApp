@@ -7,6 +7,11 @@ app = Flask(__name__)
 # what is done is    1. information is fetch from a database
 #                    2. entered in to html file and then displayed on screen
 
+# excalidraw to draw
+# use upsplash for images
+# use ipsum lorem for text generation -->
+# to write mail links use https://mailtolink.me/
+
 JOBS = [{
   'id': 1,
   'title': 'Data Analyst',
