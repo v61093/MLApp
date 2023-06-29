@@ -1,4 +1,5 @@
 from flask import Flask, render_template, jsonify
+from database import load_jobs_from_db
 
 app = Flask(__name__)
 
@@ -12,38 +13,23 @@ app = Flask(__name__)
 # use ipsum lorem for text generation -->
 # to write mail links use https://mailtolink.me/
 
-JOBS = [{
-  'id': 1,
-  'title': 'Data Analyst',
-  'location': "Banglore India",
-  'salary': 'Rs 10,00,000'
-}, {
-  'id': 2,
-  'title': 'Data Scientist',
-  'location': "Delhi India",
-  'salary': 'Rs 15,00,000'
-}, {
-  'id': 3,
-  'title': 'Frontend Engineer',
-  'location': "Remote",
-  'salary': 'Rs 12,00,000'
-}, {
-  'id': 4,
-  'title': 'Backend Engineer',
-  'location': "San Fransisco USA",
-  'salary': '$120,000'
-}]
-
 
 @app.route('/')
 def hello():
-  return render_template('home.html', jobs=JOBS, company_name='VISH')
+  jobs = load_jobs_from_db()
+  return render_template('home.html', jobs=jobs, company_name='VISH')
 
 
 @app.route("/api/jobs")
 def list_jobs():
-  return jsonify(JOBS)
+  jobs = load_jobs_from_db()
+  return jsonify(jobs)
 
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True)
+
+# database: vish_database
+# username: em1g69p3rxw5tkr2anl0
+# host: aws.connect.psdb.cloud
+# password: pscale_pw_VeOSfNfu90mCv6VQzKIFkVVlQEd1LL5b9iO1nHDPEE0
